@@ -19,4 +19,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, BuscarPersona.class);
         startActivity(intent);
     }
+
+    public void btn_formularioPersona(View view){
+        Intent intent = new Intent(MainActivity.this, PersonaFormulario.class);
+        intent.putExtra("operacion", "insertar");
+        startActivity(intent);
+    }
 }

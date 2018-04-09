@@ -1,8 +1,11 @@
 package com.example.wer.appclient.interfaces;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -28,7 +31,7 @@ public class BuscarPersona extends AppCompatActivity {
         this.dato = (EditText) findViewById(R.id.editTextDato);
         this.listViewPersona = (ListView) findViewById(R.id.listViewPersonas);
 
-        new getPersonas().execute("http://192.168.0.106:8000/rest/persona/");
+        new getPersonas().execute("http://192.168.0.107:8000/rest/persona/");
     }
 
     //ger personas
@@ -71,10 +74,19 @@ public class BuscarPersona extends AppCompatActivity {
                         }
                     }
                 }
-
                 if(personas_aux.size() != 0){
                     PersonaAdapter adapter = new PersonaAdapter(BuscarPersona.this, personas_aux);
                     listViewPersona.setAdapter(adapter);
+                    listViewPersona.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Intent i = new Intent(BuscarPersona.this, PersonaFormulario.class);
+                            i.putExtra("operacion", "actualizar");
+                            i.putExtra("id_persona", ((Persona) parent.getAdapter().getItem(position)).getDpi());
+                            startActivity(i);
+                        }
+                    });
+
                 }
             }
         }

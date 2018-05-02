@@ -6,45 +6,16 @@
     android:layout_height="match_parent"
     tools:context="com.example.wer.appclient.interfaces.BuscarPersona">
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="400dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="70dp"
-        android:text="Buscar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editTextDato"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerPersonParametros" />
-
-    <EditText
-        android:id="@+id/editTextDato"
-        android:layout_width="194dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="400dp"
-        android:layout_marginEnd="6dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="70dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerPersonParametros" />
-
     <Spinner
         android:id="@+id/spinnerPersonParametros"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:entries="@array/atributos_persona"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -63,18 +34,45 @@
 
     <ListView
         android:id="@+id/listViewPersonas"
+        style="@android:style/Widget.DeviceDefault.ExpandableListView"
         android:layout_width="306dp"
         android:layout_height="309dp"
         android:layout_marginBottom="19dp"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="7dp"
+        android:focusedByDefault="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewG1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.151"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3"
-        app:layout_constraintVertical_bias="1.0" /><![CDATA[
+        app:layout_constraintTop_toBottomOf="@+id/spinnerPersonParametros" />
+
+    <TextView
+        android:id="@+id/textViewG2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/listViewPersonas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.151"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewG1"
+        app:layout_constraintVertical_bias="0.647" /><![CDATA[
 
 
 

@@ -82,7 +82,7 @@ public class PersonaFormulario extends AppCompatActivity {
         public Boolean doInBackground(Void... params) {
             HttpClient httpClient = new DefaultHttpClient();
 
-            HttpDelete httpDelete = new HttpDelete("http://192.168.0.107:8000/rest/persona/"+id_persona+"/");
+            HttpDelete httpDelete = new HttpDelete("http://192.168.0.103:8000/rest/persona/"+id_persona+"/");
             httpDelete.setHeader("Content-Type", "application/json");
 
             try {
@@ -104,11 +104,11 @@ public class PersonaFormulario extends AppCompatActivity {
 
 
     //Insertar Persona
-    private class InsertarPersona extends AsyncTask<Void, Void, Boolean> {
+    public class InsertarPersona extends AsyncTask<Void, Void, Boolean> {
         public Boolean doInBackground(Void... params) {
             HttpClient httpClient = new DefaultHttpClient();
 
-            HttpPost httpPost = new HttpPost("http://192.168.0.107:8000/rest/persona/");
+            HttpPost httpPost = new HttpPost("http://192.168.0.103:8000/rest/persona/");
             httpPost.setHeader("Content-Type", "application/json");
 
             JSONObject jsonObject = new JSONObject();
@@ -146,7 +146,7 @@ public class PersonaFormulario extends AppCompatActivity {
     private class ActualizarPersona extends AsyncTask<Void, Void, Boolean>{
         public Boolean doInBackground(Void... params) {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPut httpPut = new HttpPut("http://192.168.0.107:8000/rest/persona/" + id_persona + "/");
+            HttpPut httpPut = new HttpPut("http://192.168.0.103:8000/rest/persona/" + id_persona + "/");
             httpPut.setHeader("Content-Type", "application/json");
 
             JSONObject jsonObject = new JSONObject();
@@ -184,7 +184,7 @@ public class PersonaFormulario extends AppCompatActivity {
     private class ObtenerPersona extends AsyncTask<Void, Void, Persona>{
         public Persona doInBackground(Void... params) {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet("http://192.168.0.107:8000/rest/persona/" + id_persona + "/");
+            HttpGet httpGet = new HttpGet("http://192.168.0.103:8000/rest/persona/" + id_persona + "/");
             httpGet.setHeader("Content-Type", "application/json");
             persona = new Persona();
             try {

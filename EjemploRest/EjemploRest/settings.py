@@ -25,7 +25,7 @@ SECRET_KEY = 'tkqd@*x$1efscvxhey^ajz=5i=y*i*7(*818844fnh^u^dp=zr'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.0.106']
+ALLOWED_HOSTS = ['192.168.0.103']
 #ALLOWED_HOSTS = []
 
 
@@ -42,6 +42,11 @@ INSTALLED_APPS = [
     'apps.Rest',
     'rest_framework',
 ]
+
+REST_FRAMEWORK = {
+   # 'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+    #'PAGE_SIZE':10
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

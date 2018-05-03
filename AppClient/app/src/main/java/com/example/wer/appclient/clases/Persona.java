@@ -18,6 +18,7 @@ public class Persona {
         this.dpi = dpi;
     }
 
+
     public String getNombre() {
         return nombre;
     }

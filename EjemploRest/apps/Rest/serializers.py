@@ -5,4 +5,4 @@ from apps.Principal.models import Persona
 class PersonaSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Persona
-		fields = ('dpi','nombre','apellido')
+		fields = ('dpi','coordenadas','direccion', 'emergencia')

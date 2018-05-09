@@ -43,14 +43,22 @@ public class PersonaAdapter extends BaseAdapter {
         View view = layoutInflater.inflate(R.layout.layout_persona, parent, false);
 
         TextView DPI = (TextView) view.findViewById(R.id.textView5);
-        TextView Nombre = (TextView) view.findViewById(R.id.textView6);
-        TextView Apellido = (TextView) view.findViewById(R.id.textView7);
+        TextView Coordenadas = (TextView) view.findViewById(R.id.textView6);
+        TextView Direccion = (TextView) view.findViewById(R.id.textView7);
+        TextView Emergencia = (TextView) view.findViewById(R.id.textView8);
+
+      //  TextView Apellido = (TextView) view.findViewById(R.id.textView7);
 
         Persona persona = this.personaArrayList.get(position);
         if(persona != null){
             DPI.setText(String.format("DPI: %s", persona.getDpi()));
-            Nombre.setText(String.format("Nombre: %s", persona.getNombre()));
-            Apellido.setText(String.format("Apellido: %s", persona.getApellido()));
+            Coordenadas.setText(String.format("Coordenadas: %s", persona.getCoordenadas()));
+            Direccion.setText(String.format("Direccion: %s", persona.getDireccion()));
+            Emergencia.setText(String.format("Emergencia: %s", persona.getEmergencia()));
+
+
+            //Nombre.setText(String.format("Coordenadas: %s", persona.getNombre()));
+
         }
         return view;
     }

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">EditText</string>
+    <string name="name">Name</string>
+    <string name="txt_name">Nombre</string>
+    <string name="txt_pass">Password</string>
+    <string name="button">Ingresar</string>
+</resources>

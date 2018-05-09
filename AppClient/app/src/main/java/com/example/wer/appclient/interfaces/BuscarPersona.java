@@ -54,7 +54,7 @@ public class BuscarPersona extends AppCompatActivity {
         tv2 = findViewById(R.id.textViewG2);
 
 
-        new getPersonas().execute("http://192.168.0.103:8000/rest/persona/");
+        new getPersonas().execute("http://wzwer.pythonanywhere.com/rest/alert/");
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
@@ -202,13 +202,18 @@ public class BuscarPersona extends AppCompatActivity {
                                     personas_aux.add(personas.get(i));
                                 }
                                 break;
-                            case "Nombre":
-                                if(personas.get(i).getNombre().equals(dato.getText().toString().trim())){
+                            case "Coordenadas":
+                                if(personas.get(i).getCoordenadas().equals(dato.getText().toString().trim())){
                                     personas_aux.add(personas.get(i));
                                 }
                                 break;
-                            case "Apellido":
-                                if(personas.get(i).getApellido().equals(dato.getText().toString().trim())){
+                            case "Direccion":
+                                if(personas.get(i).getDireccion().equals(dato.getText().toString().trim())){
+                                    personas_aux.add(personas.get(i));
+                                }
+                                break;
+                            case "Emergencia":
+                                if(personas.get(i).getEmergencia().equals(dato.getText().toString().trim())){
                                     personas_aux.add(personas.get(i));
                                 }
                                 break;

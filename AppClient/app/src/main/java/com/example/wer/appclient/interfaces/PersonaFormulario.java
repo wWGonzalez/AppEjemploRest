@@ -43,11 +43,13 @@ import java.util.Locale;
 
 
 public class PersonaFormulario extends AppCompatActivity {
-    EditText cedula, nombre, apellido;
+    EditText cedula, nombre, emergencia;
+    EditText coordenadas, adress;
     TextView tv1, tv2;
     Persona persona;
     String id_persona;
-    String direccion;
+    String dir; //Se almacena la direccion
+    String coor; //Se almacenan las coordenadas
 
     //operacion: insertar, actualizar
 
@@ -76,6 +78,19 @@ public class PersonaFormulario extends AppCompatActivity {
         }
 
     }//finaliza onCreate
+
+    public void inicializar(){
+        this.cedula = (EditText) findViewById(R.id.editTextCedula);
+       // this.nombre = (EditText) findViewById(R.id.editTextNombre);
+        this.emergencia = (EditText) findViewById(R.id.editTextEmergencia);
+      //  this.coordenadas = (EditText) findViewById(R.id.editTextCoordenadas);
+      //  this.adress = (EditText) findViewById(R.id.editTextDireccion);
+        tv1 = findViewById(R.id.textViewCoor);
+        tv2 = findViewById((R.id.textViewDir));
+
+
+
+    }
 
     private void locationStart() {
         LocationManager mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -116,9 +131,9 @@ public class PersonaFormulario extends AppCompatActivity {
                         loc.getLatitude(), loc.getLongitude(), 1);
                 if (!list.isEmpty()) {
                     Address DirCalle = list.get(0);
-                    direccion = (DirCalle.getAddressLine(0));
-                    tv2.setText(direccion);
-                  //  nombre.setText(direccion);
+                    dir = (DirCalle.getAddressLine(0));
+                    tv2.setText(dir);
+                //    nombre.setText(direccion);
                 }
 
             } catch (IOException e) {
@@ -130,18 +145,14 @@ public class PersonaFormulario extends AppCompatActivity {
 
 
 
-    public void inicializar(){
-        this.cedula = (EditText) findViewById(R.id.editTextCedula);
-        this.nombre = (EditText) findViewById(R.id.editTextNombre);
-        this.apellido = (EditText) findViewById(R.id.editTextApellido);
-        tv2 = findViewById(R.id.textViewDireccion);
-    }
+
 
     public void btn_clickGuardarPersona(View view){
         persona = new Persona();
         persona.setDpi(cedula.getText().toString().trim());
-        persona.setNombre(nombre.getText().toString().trim());
-        persona.setApellido(apellido.getText().toString().trim());
+        persona.setEmergencia(emergencia.getText().toString().trim());
+     //   persona.setNombre(nombre.getText().toString().trim());
+      //  persona.setApellido(apellido.getText().toString().trim());
 
         if (this.operacion.equals("actualizar"))
             new ActualizarPersona().execute();
@@ -160,7 +171,7 @@ public class PersonaFormulario extends AppCompatActivity {
         public Boolean doInBackground(Void... params) {
             HttpClient httpClient = new DefaultHttpClient();
 
-            HttpDelete httpDelete = new HttpDelete("http://192.168.0.103:8000/rest/persona/"+id_persona+"/");
+            HttpDelete httpDelete = new HttpDelete("http://wzwer.pythonanywhere.com/rest/alert/"+id_persona+"/");
             httpDelete.setHeader("Content-Type", "application/json");
 
             try {
@@ -182,18 +193,19 @@ public class PersonaFormulario extends AppCompatActivity {
 
 
     //Insertar Persona
-    public class InsertarPersona extends AsyncTask<Void, Void, Boolean> {
+    private class InsertarPersona extends AsyncTask<Void, Void, Boolean> {
         public Boolean doInBackground(Void... params) {
             HttpClient httpClient = new DefaultHttpClient();
 
-            HttpPost httpPost = new HttpPost("http://192.168.0.103:8000/rest/persona/");
+            HttpPost httpPost = new HttpPost("http://wzwer.pythonanywhere.com/rest/alert/");
             httpPost.setHeader("Content-Type", "application/json");
 
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put("dpi", persona.getDpi());
-                jsonObject.put("nombre", direccion);
-                jsonObject.put("apellido", persona.getApellido());
+                jsonObject.put("coordenadas", coor);
+                jsonObject.put("direccion", dir);
+                jsonObject.put("emergencia", persona.getEmergencia());
 
                 StringEntity stringEntity = new StringEntity(jsonObject.toString());
                 httpPost.setEntity(stringEntity);
@@ -211,6 +223,7 @@ public class PersonaFormulario extends AppCompatActivity {
             }
         }
 
+
         public void onPostExecute(Boolean result){
             if(result){
                 Toast.makeText(PersonaFormulario.this, "Insertado Correctamente", Toast.LENGTH_LONG).show();
@@ -224,14 +237,14 @@ public class PersonaFormulario extends AppCompatActivity {
     private class ActualizarPersona extends AsyncTask<Void, Void, Boolean>{
         public Boolean doInBackground(Void... params) {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPut httpPut = new HttpPut("http://192.168.0.103:8000/rest/persona/" + id_persona + "/");
+            HttpPut httpPut = new HttpPut("http://wzwer.pythonanywhere.com/rest/alert/" + id_persona + "/");
             httpPut.setHeader("Content-Type", "application/json");
 
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put("dpi", persona.getDpi());
                 jsonObject.put("nombre", persona.getNombre());
-                jsonObject.put("apellido", persona.getApellido());
+               // jsonObject.put("apellido", persona.getApellido());
 
                 StringEntity stringEntity = new StringEntity(jsonObject.toString());
                 httpPut.setEntity(stringEntity);
@@ -262,7 +275,7 @@ public class PersonaFormulario extends AppCompatActivity {
     private class ObtenerPersona extends AsyncTask<Void, Void, Persona>{
         public Persona doInBackground(Void... params) {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet("http://192.168.0.103:8000/rest/persona/" + id_persona + "/");
+            HttpGet httpGet = new HttpGet("http://wzwer.pythonanywhere.com/rest/alert/" + id_persona + "/");
             httpGet.setHeader("Content-Type", "application/json");
             persona = new Persona();
             try {
@@ -272,7 +285,7 @@ public class PersonaFormulario extends AppCompatActivity {
 
                 persona.setDpi(jsonObject.getString("dpi"));
                 persona.setNombre(jsonObject.getString("nombre"));
-                persona.setApellido(jsonObject.getString("apellido"));
+         //       persona.setApellido(jsonObject.getString("apellido"));
 
                 return persona;
             } catch (IOException e) {
@@ -289,7 +302,7 @@ public class PersonaFormulario extends AppCompatActivity {
             if (persona != null){
                 cedula.setText(persona.getDpi());
                 nombre.setText(persona.getNombre());
-                apellido.setText(persona.getApellido());
+             //   adress.setText(persona.getApellido());
             } else
                 Toast.makeText(PersonaFormulario.this, "Problemas al obtener el objeto", Toast.LENGTH_LONG).show();
         }
@@ -318,8 +331,11 @@ public class PersonaFormulario extends AppCompatActivity {
             loc.getLongitude();
 
             String Text = "Mi ubicacion actual es: " + "\n Lat = "
-                    + loc.getLatitude() + "\n Long = " + loc.getLongitude();
-          //  tv1.setText(Text);
+                   + loc.getLatitude() + "\n Long = " + loc.getLongitude();
+           tv1.setText(Text);
+            //String Text =loc.getLatitude()+ loc.getLongitude()+"";
+            coor= Text;
+            //tv1.setText(Text);
             this.mainActivity.setLocation(loc);
         }
 

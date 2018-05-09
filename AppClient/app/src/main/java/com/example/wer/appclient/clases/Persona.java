@@ -8,7 +8,18 @@ import com.google.gson.reflect.TypeToken;
 public class Persona {
     String dpi;
     String nombre;
-    String apellido;
+    String coordenadas;
+    String direccion;
+    String emergencia;
+
+
+    public String getCoordenadas() {
+        return coordenadas;
+    }
+
+    public void setCoordenadas(String coordenadas) {
+        this.coordenadas = coordenadas;
+    }
 
     public String getDpi() {
         return dpi;
@@ -27,12 +38,21 @@ public class Persona {
         this.nombre = nombre;
     }
 
-    public String getApellido() {
-        return apellido;
+
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public String getEmergencia() {
+        return emergencia;
+    }
+
+    public void setEmergencia(String emergencia) {
+        this.emergencia = emergencia;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
     public static ArrayList<Persona> obtenerPersonas(String json){

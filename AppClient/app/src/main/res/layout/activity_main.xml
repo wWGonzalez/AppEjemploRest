@@ -16,10 +16,9 @@
         android:scaleType="centerInside"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@mipmap/index" />
 
     <Button
@@ -31,7 +30,7 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="5dp"
         android:onClick="btn_buscarPersona"
-        android:text="Buscar Persona"
+        android:text="Ubicacion "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +45,7 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="80dp"
         android:onClick="btn_formularioPersona"
-        android:text="Agregar Persona"
+        android:text="Enviar Alerta"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
